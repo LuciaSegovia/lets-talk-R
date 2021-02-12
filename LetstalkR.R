@@ -19,7 +19,8 @@ install.packages("here")
 library(tidyverse)
 library(readxl)
 
-###-------------------------LOADING DATASET------------------------#####
+###-------------------------02-LOADING DATASET------------------------#####
+#Source of data (1) - see README for citation
 
 #Checking the working sheets in our data set before loading
 
@@ -35,7 +36,7 @@ WAFCT <- readxl::read_excel(here::here('2019_WAFCT.xlsx'),
 #Instead of glimpse you can try str(), head(), tail()
 
 
-######----------------------------------------------------------################
+######----------------------02-CLEANING DATASET-----------------################
 
 
 #rename variables 
@@ -68,4 +69,27 @@ no_brackets <- function(i){
 WAFCT <- WAFCT %>% mutate_if(is.character, no_brackets)
 
 
+###-------------------------03-VISUALIZATION------------------------#####
+#Source of data (2) - see README for citation
+
+##-------load-data
+
+fbs <- read.csv(here::here('FAOSTAT-region-africa-2014-2018_2021-02-12.csv'))
+
+##-------Create-a-plot
+
+ggplot(data = fbs) +
+  geom_point(mapping = aes(x = Year, y = Value))
+
+
+fbs$Item.Code <- as.factor(fbs$Item.Code)
+
+fbs %>% dplyr::filter(Value > 0) %>% 
+ggplot() +
+  geom_point(mapping = aes(x = Area, y = Value, colour = Item.Code))
+
+
+fbs %>% dplyr::filter(Value > 0) %>% 
+  ggplot() +
+  geom_bar(mapping = aes(x = Area))
 

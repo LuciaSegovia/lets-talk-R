@@ -1,0 +1,24 @@
+---
+title: "03_Lets-talk-R_Visualization"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::read_chunk('LetstalkR.R')
+```
+
+```{r, load-data, echo=FALSE}
+```
+
+## Visualization
+
+Create a plot with Value and Year, then add colour for Area, Item, Item.Code
+
+Change Item.code to a factor
+
+Eliminate 0 values 
+
+```{r, Create-a-plot, echo=FALSE}
+```
+
